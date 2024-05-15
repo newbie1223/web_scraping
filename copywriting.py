@@ -6,7 +6,7 @@ def generate_slogan(prompt):
     model = GPT2LMHeadModel.from_pretrained("gpt2")
 
     inputs = tokenizer.encode(prompt, return_tensors='pt')
-    outputs = model.generate(inputs, max_length=30, num_return_sequences=5, temperature=0.7)
+    outputs = model.generate(inputs, max_length=30, num_return_sequences=5, do_sample=True, temperature=0.7)
 
     slogans = []
     for output in outputs:
