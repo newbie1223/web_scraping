@@ -36,7 +36,7 @@ def downloadimages(keyword, num_images):
             img.show()
         except Exception as e:
             print(f"Could not download image {i}: {e}")
-
+            
 #使用例
 # downloadimages('橋本環奈', 3)
 
