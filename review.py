@@ -18,11 +18,11 @@ browser = webdriver.Chrome()
 browser.implicitly_wait(10)
 
 # ページにアクセス
-urlName = "https://shareview.jp/item/detail/30684"
+urlName = "https://shareview.jp/item/detail/87"
 browser.get(urlName)
 
 x = 1
-while x <= 19:
+while x <= 15:
     try:
         # 要素が存在するまで待つ
         element = WebDriverWait(browser, 20).until(
@@ -60,7 +60,7 @@ with open('reviews.csv', 'w', encoding='utf-8') as f:
     writer = csv.writer(f)
     writer.writerow([review.text for review in reviews])
 
-df = pd.read_csv('reviews.csv')
+df = pd.read_csv('./reviews/reviews.csv')
 print(df)
 
 browser.quit()
