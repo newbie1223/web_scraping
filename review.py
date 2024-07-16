@@ -18,11 +18,11 @@ browser = webdriver.Chrome()
 browser.implicitly_wait(10)
 
 # ページにアクセス
-urlName = "https://shareview.jp/item/detail/10240"
+urlName = "https://shareview.jp/item/detail/30684"
 browser.get(urlName)
 
 x = 1
-while x <= 18:
+while x <= 19:
     try:
         # 要素が存在するまで待つ
         element = WebDriverWait(browser, 20).until(
