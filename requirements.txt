@@ -27,6 +27,7 @@ kiwisolver==1.4.5
 lxml==5.2.1
 MarkupSafe==2.1.5
 matplotlib==3.8.4
+mecab==0.996.3
 mpmath==1.3.0
 networkx==3.3
 numpy==1.26.4
