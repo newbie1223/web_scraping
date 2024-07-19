@@ -1,6 +1,6 @@
 import csv
 
-keyword = 'コク'
+keyword = '甘み'
 
 l = []
 i=0
