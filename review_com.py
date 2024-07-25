@@ -18,16 +18,24 @@ browser = webdriver.Chrome()
 browser.implicitly_wait(10)
 
 # ページにアクセス
-urlName = "https://review.kakaku.com/review/K0000661313/#tab"
+urlName = "https://review.kakaku.com/review/K0000661313/"
 browser.get(urlName)
+url = BeautifulSoup(browser.page_source, 'html.parser')
+# 特定のクラスを持つすべての要素を検索
+reviews = url.find_all("p", class_="revEntryCont")
 
 x = 1
 while x <= 10:
     try:
         # 要素が存在するまで待つ
-        element = WebDriverWait(browser, 20).until(
-            EC.presence_of_element_located((By.XPATH, f'/html/body/div[1]/div/div/div[4]/div[5]/div/div[2]/div[1]/p/a[{x}]'))
-        )
+        if x == 1:
+            element = WebDriverWait(browser, 10).until(
+                EC.presence_of_element_located((By.XPATH, f'/html/body/div[1]/div/div/div[4]/div[5]/div/div[2]/div[1]/p/a'))
+            )
+        else:
+            element = WebDriverWait(browser, 10).until(
+                EC.presence_of_element_located((By.XPATH, f'/html/body/div[1]/div/div/div[4]/div[5]/div/div[2]/div[1]/p/a[2]'))
+            )
         print("Element is found")
         # 要素がクリック可能になるまで待つ
         # element = WebDriverWait(browser, 30).until(
@@ -40,17 +48,20 @@ while x <= 10:
         browser.execute_script("arguments[0].click();", element)
         print('click')
         x += 1
+        url = BeautifulSoup(browser.page_source, 'html.parser')
+        # 特定のクラスを持つすべての要素を検索
+        reviews.append(url.find_all("p", class_="revEntryCont"))
     except Exception as e:
         print(f"An error occurred: {e}")
         break
 
 time.sleep(3)
 # ページのHTMLを取得
-# response = req.urlopen(urlName)
-url = BeautifulSoup(browser.page_source, 'html.parser')
+# # response = req.urlopen(urlName)
+# url = BeautifulSoup(browser.page_source, 'html.parser')
 
-# 特定のクラスを持つすべての要素を検索
-reviews = url.find_all("p", class_="revEntryCont")
+# # 特定のクラスを持つすべての要素を検索
+# reviews = url.find_all("p", class_="revEntryCont")
 
 # 各トレンド記事を表示
 # for review in reviews:
